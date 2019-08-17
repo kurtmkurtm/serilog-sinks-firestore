@@ -39,14 +39,16 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
-    projects: '**/*Serilog.Sinks.Firestore.csproj'
+    projects: '**/*.csproj'
     arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
   inputs:
+    projects: '**/*Serilog.Sinks.Firestore.csproj'
     command: pack
     versioningScheme: byBuildNumber
+
 - task: CopyFiles@2
   displayName: 'Copy package'
   inputs:
