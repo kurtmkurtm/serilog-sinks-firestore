@@ -15,18 +15,18 @@ variables:
   buildConfiguration: 'Release'
   testConfiguration: 'Debug'
 
-steps:
-- task: gittools.gitversion.gitversion-task.GitVersion@4
-  displayName: GitVersion
+steps: 
+
+- task: GitVersion@5
   inputs:
+    runtime: 'core'
     updateAssemblyInfo: true
-    preferBundledVersion: false
 
 - task: DotNetCoreCLI@2
   displayName: Restore
   inputs:
     command: restore
-    projects: '$(Parameters.RestoreBuildProjects)'
+    projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: Build
