@@ -12,6 +12,7 @@ namespace Serilog.Sinks.Firestore.Tests.Extensions
     public class FirestoreSinkExtensionsTests
     { 
         [Theory]
+        [Trait(Trait.Category,Category.IntegrationTest)]
         [InlineData(CredentialType.Default, "project", "logs", null, 1, 1)]
         [InlineData(CredentialType.Default, "project", "logs", null, 500, 500)]
         [InlineData(CredentialType.Default, "project", "logs", null, 100, 100)]
@@ -27,7 +28,9 @@ namespace Serilog.Sinks.Firestore.Tests.Extensions
             // Assert
             Assert.NotNull(result);
         }
+
         [Theory]
+        [Trait(Trait.Category, Category.IntegrationTest)]
         [InlineData(CredentialType.Default, "project", "logs", null, -1, 10)]
         [InlineData(CredentialType.Default, "project", "logs", null, 0, 10)]
         [InlineData(CredentialType.Default, "project", "logs", null, 501, 10)]

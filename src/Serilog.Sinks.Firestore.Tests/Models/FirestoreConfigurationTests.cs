@@ -8,6 +8,7 @@ namespace Serilog.Sinks.Firestore.Tests.Models
     public class FirestoreConfigurationTests
     {
         [Theory]
+        [Trait(Trait.Category, Category.UnitTest)]
         [InlineData(CredentialType.Default, null, "logs", null)]
         [InlineData(CredentialType.Default, "project", null, null)]
         [InlineData(CredentialType.CredentialsPath, "project", "logs", null)]
@@ -22,6 +23,7 @@ namespace Serilog.Sinks.Firestore.Tests.Models
         }
 
         [Theory]
+        [Trait(Trait.Category, Category.UnitTest)]
         [InlineData(CredentialType.JsonCredentials, "project", "logs", "{ \"creds\" : \"value\"}")]
         [InlineData(CredentialType.CredentialsPath, "project", "logs", @"C:\mycreds.json")]
         [InlineData(CredentialType.Default, "project", "logs", null)]
