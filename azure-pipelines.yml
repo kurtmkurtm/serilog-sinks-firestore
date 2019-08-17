@@ -26,14 +26,14 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
-    projects: '**/*.csproj'
+    projects: '**/*.Tests.csproj'
     arguments: '--configuration $(TestConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: Test
   inputs:
     command: test
-    projects: '$(Parameters.TestProjects)'
+    projects: '**/*.csproj'
     arguments: '--configuration $(TestConfiguration) '
 
 - task: DotNetCoreCLI@2
