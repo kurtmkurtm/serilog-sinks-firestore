@@ -5,6 +5,11 @@
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/kurtmkurtm/serilog-sinks-firestore#license</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/kurtmkurtm/serilog-sinks-firestore</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/kurtmkurtm/serilog-sinks-firestore</RepositoryUrl>
+    <Authors>Kurt Murrell</Authors>
+    <Description>Serilog.Sinks.Firestore is a serilog sink that writes logs to a Google Cloud Firestore document database.</Description>
   </PropertyGroup>
   
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
