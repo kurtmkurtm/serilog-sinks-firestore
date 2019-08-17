@@ -52,8 +52,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy package'
   inputs:
-    SourceFolder: '$ (blog.path) / public'
-    Contents: "*.nupkg"
+    Contents: "**/*.nupkg"
     TargetFolder: '$ (Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
