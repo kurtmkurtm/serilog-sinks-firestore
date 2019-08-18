@@ -1,17 +1,18 @@
-﻿using System;
+﻿using Google.Cloud.Firestore;
+using Google.Cloud.Firestore.V1;
+using Serilog.Sinks.Firestore.Enums;
+using Serilog.Sinks.Firestore.Interfaces;
+using Serilog.Sinks.Firestore.Models;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Google.Cloud.Firestore;
-using Google.Cloud.Firestore.V1;
-using Serilog.Sinks.Firestore.Models;
 
 namespace Serilog.Sinks.Firestore
 {
     /// <summary>
     /// Client wrapper for FirestoreDb
     /// </summary>
-    internal class FirestoreApiClient
+    internal class FirestoreApiClient : IFirestoreApiClient
     {
         private readonly FirestoreDb _firestoreDatabase;
         private readonly CollectionReference _collection;
@@ -23,19 +24,16 @@ namespace Serilog.Sinks.Firestore
         /// <param name="configuration">Configuration options for Firestore usage</param>
         internal FirestoreApiClient(FirestoreConfiguration configuration)
         {
-            if (configuration.ProjectId is null) throw new ArgumentNullException(nameof(configuration.ProjectId));
-            if (configuration.CollectionName is null) throw new ArgumentNullException(nameof(configuration.CollectionName));
-
             var clientBuilder = new FirestoreClientBuilder();
 
             switch (configuration.CredentialType)
             {
-                case Enums.CredentialType.Default:
+                case CredentialType.Default:
                     break;
-                case Enums.CredentialType.CredentialsPath:
+                case CredentialType.CredentialsPath:
                     clientBuilder.CredentialsPath = configuration.CredentialValue;
                     break;
-                case Enums.CredentialType.JsonCredentials:
+                case CredentialType.JsonCredentials:
                     clientBuilder.JsonCredentials = configuration.CredentialValue;
                     break;
             }
@@ -50,15 +48,15 @@ namespace Serilog.Sinks.Firestore
         /// <param name="messages">Formatted log item</param>
         /// <param name="cancellationToken">Cancellation token for server commit</param>
         /// <returns>A task that can be awaited</returns> 
-        internal async Task WriteAsync(IEnumerable<IReadOnlyDictionary<string, object>> messages, CancellationToken cancellationToken = default(CancellationToken))
-        {           
+        public async Task WriteAsync(IEnumerable<IReadOnlyDictionary<string, object>> messages, CancellationToken cancellationToken = default(CancellationToken))
+        {
             var batch = _firestoreDatabase.StartBatch();
 
             foreach (var message in messages)
             {
                 var logRef = _collection.Document();
                 batch.Set(logRef, message);
-            }     
+            }
 
             _ = await batch.CommitAsync(cancellationToken);
         }
