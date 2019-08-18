@@ -45,7 +45,7 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
   inputs:
-    projects: '**/*Serilog.Sinks.Firestore.csproj'
+    projects: '**/Serilog.Sinks.Firestore.csproj'
     command: pack
     versioningScheme: byBuildNumber
 
