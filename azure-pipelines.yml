@@ -39,7 +39,7 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
-    projects: '**/*.csproj'
+    projects: '**/*Serilog.Sinks.Firestore.csproj'
     arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
