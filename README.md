@@ -1,6 +1,8 @@
 # Serilog.Sinks.Firestore
 
-Serilog.Sinks.Firestore is a serilog sink that writes logs to a Google Cloud Firestore document database.
+Serilog.Sinks.Firestore is a Serilog sink that writes logs to a Google Cloud Firestore document database.
+
+[![Build Status](https://dev.azure.com/kurt0233/Serilog.Sinks.Firestore/_apis/build/status/kurtmkurtm.serilog-sinks-firestore?branchName=master)](https://dev.azure.com/kurt0233/Serilog.Sinks.Firestore/_build/latest?definitionId=3&branchName=master) [![Nuget](https://img.shields.io/nuget/v/Serilog.Sinks.Firestore.svg)](https://www.nuget.org/packages/Serilog.Sinks.Firestore/)
 
 <img src="https://firebase.google.com/downloads/brand-guidelines/PNG/logo-built_white.png" width="256"> 
 
